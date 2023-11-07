@@ -12,8 +12,6 @@ public class TvShow {
     private Boolean adult;
     @SerializedName("backdrop_path")
     private String backdropPath;
-    @SerializedName("created_by")
-    private List<CreatedBy> createdBy;
     @SerializedName("episode_run_time")
     private List<Long> episodeRunTime;
     @SerializedName("first_air_date")
