@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+
+api:
+  base-url: https://api.themoviedb.org/3
