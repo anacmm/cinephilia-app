@@ -30,6 +30,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation platform('org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR8')
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	implementation 'com.google.code.gson:gson:2.8.9'
