@@ -15,13 +15,10 @@ public class Cast {
     private Long id;
     @SerializedName("known_for_department")
     private String knownForDepartment;
-
     private String name;
-   
     private Long order;
     @SerializedName("original_name")
     private String originalName;
-   
     private Double popularity;
     @SerializedName("profile_path")
     private String profilePath;
