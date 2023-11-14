@@ -1,9 +1,10 @@
 
 package br.com.maestrello.cinephilia.domain;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Movie {
@@ -18,17 +19,17 @@ public class Movie {
     private String originalLanguage;
     @SerializedName("original_title")
     private String originalTitle;
-   
+
     private String overview;
-   
+
     private Double popularity;
     @SerializedName("poster_path")
     private String posterPath;
     @SerializedName("release_date")
     private String releaseDate;
-   
+
     private String title;
-   
+
     private Boolean video;
     @SerializedName("vote_average")
     private Double voteAverage;

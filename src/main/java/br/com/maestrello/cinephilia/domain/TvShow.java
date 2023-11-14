@@ -1,9 +1,10 @@
 
 package br.com.maestrello.cinephilia.domain;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+
+import java.util.List;
 
 
 @Data
@@ -16,20 +17,20 @@ public class TvShow {
     private List<Long> episodeRunTime;
     @SerializedName("first_air_date")
     private String firstAirDate;
-    
+
     private List<Genre> genres;
     private String homepage;
-    
+
     private Long id;
     @SerializedName("in_production")
     private Boolean inProduction;
-    
+
     private List<String> languages;
     @SerializedName("last_air_date")
     private String lastAirDate;
 
     private String name;
-    
+
     @SerializedName("next_episode_to_air")
     private Object nextEpisodeToAir;
     @SerializedName("number_of_episodes")
@@ -42,17 +43,17 @@ public class TvShow {
     private String originalLanguage;
     @SerializedName("original_name")
     private String originalName;
-    
+
     private String overview;
-    
+
     private Double popularity;
     @SerializedName("poster_path")
     private String posterPath;
 
     private String status;
-    
+
     private String tagline;
-    
+
     private String type;
     @SerializedName("vote_average")
     private Double voteAverage;

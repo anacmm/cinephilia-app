@@ -1,9 +1,10 @@
 
 package br.com.maestrello.cinephilia.domain;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Popular {
@@ -14,6 +15,5 @@ public class Popular {
     private Long totalPages;
     @SerializedName("total_results")
     private Long totalResults;
-
 
 }
