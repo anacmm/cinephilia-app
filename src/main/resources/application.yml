@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: dev
+
   cloud:
     openfeign:
       client:
@@ -8,7 +9,21 @@ spring:
           default:
             connectTimeout: 5000
             readTimeout: 5000
-            loggerLevel: basic
+            loggerLevel: full
 
-api:
+tmdb:
   base-url: https://api.themoviedb.org/3
+  api-key: ENC(mHH1fl6FXC6bkpSAPfqwQNhixLuyHjqtdr/SsoJO4r/XybKHLkffYgY3sElL2XQD)
+
+logging:
+  level:
+    feign: DEBUG
+    org.springframework: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.cloud: DEBUG
+    org.springframework.feign: DEBUG
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator

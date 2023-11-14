@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "tv-api", url = "${api.base-url}")
+@FeignClient(name = "tv-api", url = "${tmdb.base-url}")
 public interface TvSeriesApi {
 
     @GetMapping("/tv/popular")

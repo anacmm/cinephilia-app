@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "person-api", url = "${api.base-url}")
+@FeignClient(name = "person-api", url = "${tmdb.base-url}")
 public interface PersonApi {
 
     @GetMapping("/person/popular")

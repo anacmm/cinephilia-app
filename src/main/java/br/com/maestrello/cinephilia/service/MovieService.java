@@ -18,7 +18,7 @@ public class MovieService {
     }
 
     public List<Movie> getPopularMovies() {
-        return movieApi.getPopularMovies();
+        return movieApi.getPopularMovies().getResults();
     }
 
 }
