@@ -1,6 +1,14 @@
 spring:
   profiles:
     active: dev
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
 
 api:
   base-url: https://api.themoviedb.org/3

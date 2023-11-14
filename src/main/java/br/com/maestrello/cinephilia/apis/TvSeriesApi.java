@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @FeignClient(name = "tv-api", url = "${api.base-url}")
-public abstract class TvSeriesApi {
+public interface TvSeriesApi {
 
     @GetMapping("/tv/popular")
     public abstract List<TvShow> getPopularTvShows();
