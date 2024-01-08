@@ -70,5 +70,5 @@ If you encounter any issues or need support, please open an issue on the project
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ### Acknowledgments
-Ana Maestrello (@anacmm) for creating and maintaining the CinephiliaApp project.
+Ana C. M. Maestrello (@anacmm) for creating and maintaining the CinephiliaApp project.
 The Movie Database (TMDb) for providing access to movie and TV show data via their API.
