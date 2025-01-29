@@ -1,9 +1,7 @@
 # CinephiliaApp
-
 CinephiliaApp is a Java-based application designed for movie and TV show lovers. It's a fun and educational game where users must link two actors by exploring their work in movies and TV shows, aiming to do so in the fewest steps possible. This project is continually evolving and is authored by [Ana Maestrello](https://github.com/anacmm).
 
 ## Features
-
 - Browse and search for movies, TV shows, and actors.
 - Link actors by connecting their work in films and TV shows.
 - Utilize The Movie Database (TMDb) API for rich movie and TV show data.
@@ -12,7 +10,6 @@ CinephiliaApp is a Java-based application designed for movie and TV show lovers.
 ## Getting Started
 
 ### Prerequisites
-
 Before you begin, ensure you have met the following requirements:
 
 - Java Development Kit (JDK) 11 or later installed.
@@ -20,7 +17,6 @@ Before you begin, ensure you have met the following requirements:
 - A free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/documentation/api) for accessing movie and TV show data.
 
 ### Configuration
-
 1. Clone the CinephiliaApp repository to your local machine:
 
    ```bash
