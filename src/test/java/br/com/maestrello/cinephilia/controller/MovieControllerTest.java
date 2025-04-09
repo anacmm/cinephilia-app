@@ -15,49 +15,55 @@ import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @AutoConfigureWireMock(port = 8081)
-class PersonControllerTest {
+class MovieControllerTest {
 
   @Autowired private MockMvc mockMvc;
 
   @BeforeEach
   void setupWireMockStub() {
-    WireMockStubs.stubPersonEndpoints();
-    WireMockStubs.stubTvEndpoints();
+    WireMockStubs.stubMovieEndpoints();
   }
 
   @Test
-  void getPopularPeople_shouldReturnList_whenAvailable() throws Exception {
-    mockMvc
-        .perform(get("/person/popular"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$").isArray())
-        .andExpect(jsonPath("$[0].id").exists());
-  }
+  void getMovieDetails_shouldReturnMovieJson_whenMovieExists() throws Exception {
+    // Arrange
+    Long movieId = 1L;
 
-  @Test
-  void getPersonDetails_shouldReturnPerson_whenExists() throws Exception {
+    // Act & Assert
     mockMvc
-        .perform(get("/person/1"))
+        .perform(get("/movies/{movie_id}", movieId))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.id").exists())
-        .andExpect(jsonPath("$.name").exists());
+        .andExpect(jsonPath("$.id").isNumber())
+        .andExpect(jsonPath("$.original_title").exists())
+        .andExpect(jsonPath("$.original_title").isNotEmpty());
   }
 
   @Test
-  void getCredits_shouldReturnCredits_whenAvailable() throws Exception {
+  void getPopularMovies_shouldReturnList_whenAvailable() throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/person/1/credits"))
+        .perform(get("/movies/popular"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$").isArray())
-        .andExpect(jsonPath("$[0].title").exists());
+        .andExpect(jsonPath("$[0].id").exists())
+        .andExpect(jsonPath("$[0].original_title").exists());
+  }
+
+  @Test
+  void getTopRatedMovies_shouldReturnList_whenAvailable() throws Exception {
+    mockMvc
+        .perform(get("/movies/top_rated"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$").isArray())
+        .andExpect(jsonPath("$[0].id").exists())
+        .andExpect(jsonPath("$[0].original_title").exists());
   }
 }
