@@ -1,0 +1,417 @@
+[
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1229730,
+    "overview": "By day, they're invisible—valets, hostesses, and bartenders at a luxury hotel. By night, they're the Carjackers, a crew of skilled drivers who track and rob wealthy clients on the road. As they plan their ultimate heist, the hotel director hires a ruthless hitman, to stop them at all costs. With danger closing in, can Nora, Zoe, Steve, and Prestance pull off their biggest score yet?",
+    "popularity": 426.0431,
+    "title": "Carjackers",
+    "video": false,
+    "backdrop_path": "/is9bmV6uYXu7LjZGJczxrjJDlv8.jpg",
+    "genre_ids": [
+      28,
+      12
+    ],
+    "original_language": "fr",
+    "original_title": "Carjackers",
+    "poster_path": "/1bhIezUxvLM9r66yIf1i6EDVJ6R.jpg",
+    "release_date": "2025-03-27",
+    "vote_average": 7.1,
+    "vote_count": 40
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1125899,
+    "overview": "When a group of radical activists take over an energy company's annual gala, seizing 300 hostages, an ex-soldier turned window cleaner suspended 50 storeys up on the outside of the building must save those trapped inside, including her younger brother.",
+    "popularity": 395.1497,
+    "title": "Cleaner",
+    "video": false,
+    "backdrop_path": "/gsQJOfeW45KLiQeEIsom94QPQwb.jpg",
+    "genre_ids": [
+      28,
+      53
+    ],
+    "original_language": "en",
+    "original_title": "Cleaner",
+    "poster_path": "/mwzDApMZAGeYCEVjhegKvCzDX0W.jpg",
+    "release_date": "2025-02-19",
+    "vote_average": 6.779,
+    "vote_count": 147
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1261050,
+    "overview": "In 2008, a group of men from Denmark and across Europe pull off the biggest heist of all time on Danish soil. Kasper, a boxer with few chances left in life, is offered the opportunity to plan the robbery by its foreign initiators.",
+    "popularity": 335.4507,
+    "title": "The Quiet Ones",
+    "video": false,
+    "backdrop_path": "/9OO6I25MHhCDd0XwNk4oZl0fpwB.jpg",
+    "genre_ids": [
+      28,
+      18
+    ],
+    "original_language": "da",
+    "original_title": "De lydløse",
+    "poster_path": "/7NLY1jNwtZX1yVzwVoBeAhaBE8i.jpg",
+    "release_date": "2024-10-31",
+    "vote_average": 5.938,
+    "vote_count": 16
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1197306,
+    "overview": "Levon Cade left behind a decorated military career in the black ops to live a simple life working construction. But when his boss's daughter, who is like family to him, is taken by human traffickers, his search to bring her home uncovers a world of corruption far greater than he ever could have imagined.",
+    "popularity": 361.4478,
+    "title": "A Working Man",
+    "video": false,
+    "backdrop_path": "/xBrx6O1RIhjtWmVthZIANuQz7Z2.jpg",
+    "genre_ids": [
+      28,
+      80,
+      53
+    ],
+    "original_language": "en",
+    "original_title": "A Working Man",
+    "poster_path": "/6FRFIogh3zFnVWn7Z6zcYnIbRcX.jpg",
+    "release_date": "2025-03-26",
+    "vote_average": 6.8,
+    "vote_count": 104
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 822119,
+    "overview": "After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.",
+    "popularity": 326.4753,
+    "title": "Captain America: Brave New World",
+    "video": false,
+    "backdrop_path": "/8eifdha9GQeZAkexgtD45546XKx.jpg",
+    "genre_ids": [
+      28,
+      53,
+      878
+    ],
+    "original_language": "en",
+    "original_title": "Captain America: Brave New World",
+    "poster_path": "/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "release_date": "2025-02-12",
+    "vote_average": 6.125,
+    "vote_count": 1194
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 950387,
+    "overview": "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld: a bizarre, cubic wonderland that thrives on imagination. To get back home, they'll have to master this world while embarking on a magical quest with an unexpected, expert crafter, Steve.",
+    "popularity": 333.9632,
+    "title": "A Minecraft Movie",
+    "video": false,
+    "backdrop_path": "/2Nti3gYAX513wvhp8IiLL6ZDyOm.jpg",
+    "genre_ids": [
+      10751,
+      35,
+      12,
+      14
+    ],
+    "original_language": "en",
+    "original_title": "A Minecraft Movie",
+    "poster_path": "/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg",
+    "release_date": "2025-03-31",
+    "vote_average": 6.4,
+    "vote_count": 70
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1165067,
+    "overview": "Battles in virtual reality, survival in a post-apocalyptic wasteland, a Soviet spaceship giving a distress signal - Fantastic stories created with advanced special effects and passion.",
+    "popularity": 260.8825,
+    "title": "Cosmic Chaos",
+    "video": false,
+    "backdrop_path": "/m2mzlsJjE3UAqeUB5fLUkpWg4Iq.jpg",
+    "genre_ids": [
+      53,
+      878
+    ],
+    "original_language": "en",
+    "original_title": "Cosmic Chaos",
+    "poster_path": "/mClzWv7gBqgXfjZXp49Enyoex1v.jpg",
+    "release_date": "2023-08-03",
+    "vote_average": 6.9,
+    "vote_count": 27
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1373723,
+    "overview": "War stories about family, ethics and honor include the true story of two U.S. Marines who in a span of six seconds, must stand their ground to stop a suicide truck bomb, a Navy Corpsman who attempts to hold on to his humanity, and a WW2 soldier who gets separated from his squad and is forced to re-evaluate his code.",
+    "popularity": 249.5926,
+    "title": "The Codes of War",
+    "video": false,
+    "backdrop_path": "/ibF5XVxTzf1ayzZrmiJqgeQ39Qk.jpg",
+    "genre_ids": [
+      28,
+      10752
+    ],
+    "original_language": "en",
+    "original_title": "The Codes of War",
+    "poster_path": "/oXeiQAfRK90pxxhP5iKPXQqAIN1.jpg",
+    "release_date": "2025-03-20",
+    "vote_average": 7.481,
+    "vote_count": 27
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1252309,
+    "overview": "After his father's death, Eric Zimmerman travels to Spain to oversee his company's branches. In Madrid, he falls for Judith and engage in an intense, erotic relationship full of exploration. However, Eric fears his secret may end their affair.",
+    "popularity": 273.7269,
+    "title": "Ask Me What You Want",
+    "video": false,
+    "backdrop_path": "/qiVrapzgrDO7c6yQTSvn0dhwsn8.jpg",
+    "genre_ids": [
+      10749,
+      18
+    ],
+    "original_language": "es",
+    "original_title": "Pídeme lo que quieras",
+    "poster_path": "/76qnVxU2rPdVvipBN3DPQH6fVYB.jpg",
+    "release_date": "2024-11-29",
+    "vote_average": 6.014,
+    "vote_count": 106
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1020414,
+    "overview": "Wendy Darling strikes out in an attempt to rescue her brother Michael from the clutches of the evil Peter Pan who intends to send him to Neverland. Along the way she meets a twisted Tinkerbell, who is hooked on what she thinks is fairy dust.",
+    "popularity": 215.0996,
+    "title": "Peter Pan's Neverland Nightmare",
+    "video": false,
+    "backdrop_path": "/nhx0ttmAS2w8e6hyIcKoNvgHoix.jpg",
+    "genre_ids": [
+      27,
+      53,
+      14
+    ],
+    "original_language": "en",
+    "original_title": "Peter Pan's Neverland Nightmare",
+    "poster_path": "/mOR1Ks0EcXocwMV4EPv4letz0F5.jpg",
+    "release_date": "2025-01-13",
+    "vote_average": 6.018,
+    "vote_count": 28
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1388366,
+    "overview": "A curious group of friends sneak into an abandoned spinach canning factory to film a documentary on the legend of the \"Sailor Man,\" who is said to haunt the factory and local docks.",
+    "popularity": 181.9739,
+    "title": "Popeye the Slayer Man",
+    "video": false,
+    "backdrop_path": "/xkjWiRQtrenqGRWO2Enry2JIl4d.jpg",
+    "genre_ids": [
+      27
+    ],
+    "original_language": "en",
+    "original_title": "Popeye the Slayer Man",
+    "poster_path": "/nVwu3mN7hr1yF467pGct3yQFM41.jpg",
+    "release_date": "2025-03-21",
+    "vote_average": 6.784,
+    "vote_count": 44
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 762509,
+    "overview": "Mufasa, a cub lost and alone, meets a sympathetic lion named Taka, the heir to a royal bloodline. The chance meeting sets in motion an expansive journey of a group of misfits searching for their destiny.",
+    "popularity": 182.238,
+    "title": "Mufasa: The Lion King",
+    "video": false,
+    "backdrop_path": "/1w8kutrRucTd3wlYyu5QlUDMiG1.jpg",
+    "genre_ids": [
+      12,
+      10751,
+      16
+    ],
+    "original_language": "en",
+    "original_title": "Mufasa: The Lion King",
+    "poster_path": "/lurEK87kukWNaHd0zYnsi3yzJrs.jpg",
+    "release_date": "2024-12-18",
+    "vote_average": 7.444,
+    "vote_count": 1843
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 447273,
+    "overview": "Princess Snow White flees the castle when the Evil Queen, in her jealousy over Snow White's inner beauty, tries to kill her. Deep into the dark woods, she stumbles upon seven magical dwarves and a young thief named Jonathan. Together, they strive to survive the Queen's relentless pursuit and aspire to take back the kingdom in the process.",
+    "popularity": 173.1867,
+    "title": "Snow White",
+    "video": false,
+    "backdrop_path": "/9KbUro9uJHUt5xyorQtjWmGfJDE.jpg",
+    "genre_ids": [
+      10751,
+      14
+    ],
+    "original_language": "en",
+    "original_title": "Snow White",
+    "poster_path": "/xWWg47tTfparvjK0WJNX4xL8lW2.jpg",
+    "release_date": "2025-03-19",
+    "vote_average": 4.5,
+    "vote_count": 475
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 257094,
+    "overview": "Nancy, a teacher whose life with her husband in Holland, Michigan, tumbles into a twisted tale when she and her colleague become suspicious of a secret.",
+    "popularity": 152.8077,
+    "title": "Holland",
+    "video": false,
+    "backdrop_path": "/3xN4vNPWBSVDsiiOzL5sB95Sa1J.jpg",
+    "genre_ids": [
+      53,
+      9648
+    ],
+    "original_language": "en",
+    "original_title": "Holland",
+    "poster_path": "/39jIr3A4ScUeGxFdMeARYKNxTgU.jpg",
+    "release_date": "2025-03-27",
+    "vote_average": 5.6,
+    "vote_count": 169
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1254786,
+    "overview": "When her mother sends her on a quest to complete a teenage bucket list, a young woman uncovers family secrets, finds romance — and rediscovers herself.",
+    "popularity": 180.48,
+    "title": "The Life List",
+    "video": false,
+    "backdrop_path": "/sulUXRukzh7WSK34y8mnaUcHo3y.jpg",
+    "genre_ids": [
+      10749,
+      35,
+      18
+    ],
+    "original_language": "en",
+    "original_title": "The Life List",
+    "poster_path": "/5fg98cVo7da7OIK45csdLSd4NaU.jpg",
+    "release_date": "2025-03-27",
+    "vote_average": 6.929,
+    "vote_count": 127
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1241982,
+    "overview": "After receiving an unexpected call from her wayfinding ancestors, Moana journeys alongside Maui and a new crew to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she's ever faced.",
+    "popularity": 178.5912,
+    "title": "Moana 2",
+    "video": false,
+    "backdrop_path": "/zo8CIjJ2nfNOevqNajwMRO6Hwka.jpg",
+    "genre_ids": [
+      16,
+      12,
+      10751,
+      35
+    ],
+    "original_language": "en",
+    "original_title": "Moana 2",
+    "poster_path": "/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
+    "release_date": "2024-11-21",
+    "vote_average": 7.111,
+    "vote_count": 2125
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1233575,
+    "overview": "When an intelligence agent is suspected of betraying the nation, her husband – also a legendary agent · faces the ultimate test of whether to be loyal to his marriage, or his country.",
+    "popularity": 174.4116,
+    "title": "Black Bag",
+    "video": false,
+    "backdrop_path": "/gxO51FVgADhYGGnnRPIlutVqb30.jpg",
+    "genre_ids": [
+      18,
+      9648,
+      53
+    ],
+    "original_language": "en",
+    "original_title": "Black Bag",
+    "poster_path": "/hHPovtU4b96LHcoeEwRkGHI5btw.jpg",
+    "release_date": "2025-03-12",
+    "vote_average": 6.605,
+    "vote_count": 200
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 939243,
+    "overview": "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
+    "popularity": 133.5704,
+    "title": "Sonic the Hedgehog 3",
+    "video": false,
+    "backdrop_path": "/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg",
+    "genre_ids": [
+      28,
+      878,
+      35,
+      10751,
+      12,
+      14
+    ],
+    "original_language": "en",
+    "original_title": "Sonic the Hedgehog 3",
+    "poster_path": "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
+    "release_date": "2024-12-19",
+    "vote_average": 7.76,
+    "vote_count": 2320
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1356039,
+    "overview": "When a hostage rescue mission creates a new enemy, Capt. Guerrero and his elite soldiers must face an ambush by a criminal group.",
+    "popularity": 128.436,
+    "title": "Counterattack",
+    "video": false,
+    "backdrop_path": "/deUWVEgNh2IGjShyymZhaYP40ye.jpg",
+    "genre_ids": [
+      28,
+      12,
+      53
+    ],
+    "original_language": "es",
+    "original_title": "Contraataque",
+    "poster_path": "/38I76hGcFY6xB47pjm7pZwkfuAF.jpg",
+    "release_date": "2025-02-27",
+    "vote_average": 8.398,
+    "vote_count": 586
+  },
+  {
+    "adult": false,
+    "genres": null,
+    "id": 1126166,
+    "overview": "A U.S. Marshal escorts a government witness to trial after he's accused of getting involved with a mob boss, only to discover that the pilot who is transporting them is also a hitman sent to assassinate the informant. After they subdue him, they're forced to fly together after discovering that there are others attempting to eliminate them.",
+    "popularity": 123.6463,
+    "title": "Flight Risk",
+    "video": false,
+    "backdrop_path": "/gFFqWsjLjRfipKzlzaYPD097FNC.jpg",
+    "genre_ids": [
+      28,
+      80,
+      53
+    ],
+    "original_language": "en",
+    "original_title": "Flight Risk",
+    "poster_path": "/q0bCG4NX32iIEsRFZqRtuvzNCyZ.jpg",
+    "release_date": "2025-01-22",
+    "vote_average": 6.141,
+    "vote_count": 572
+  }
+]

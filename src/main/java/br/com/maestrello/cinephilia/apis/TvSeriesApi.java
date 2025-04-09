@@ -1,6 +1,6 @@
 package br.com.maestrello.cinephilia.apis;
 
-import br.com.maestrello.cinephilia.domain.TvShow;
+import br.com.maestrello.cinephilia.model.TvShow;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

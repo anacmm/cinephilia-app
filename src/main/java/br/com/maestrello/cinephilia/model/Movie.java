@@ -1,7 +1,7 @@
 
-package br.com.maestrello.cinephilia.domain;
+package br.com.maestrello.cinephilia.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,30 +10,31 @@ import java.util.List;
 public class Movie {
 
     private Boolean adult;
-    @SerializedName("backdrop_path")
+    @JsonProperty("backdrop_path")
     private String backdropPath;
-    @SerializedName("genre_ids")
+    @JsonProperty("genre_ids")
     private List<Long> genreIds;
+    private List<Genre> genres;
     private Long id;
-    @SerializedName("original_language")
+    @JsonProperty("original_language")
     private String originalLanguage;
-    @SerializedName("original_title")
+    @JsonProperty("original_title")
     private String originalTitle;
 
     private String overview;
 
     private Double popularity;
-    @SerializedName("poster_path")
+    @JsonProperty("poster_path")
     private String posterPath;
-    @SerializedName("release_date")
+    @JsonProperty("release_date")
     private String releaseDate;
 
     private String title;
 
     private Boolean video;
-    @SerializedName("vote_average")
+    @JsonProperty("vote_average")
     private Double voteAverage;
-    @SerializedName("vote_count")
+    @JsonProperty("vote_count")
     private Long voteCount;
 
 }

@@ -1,7 +1,7 @@
 
-package br.com.maestrello.cinephilia.domain;
+package br.com.maestrello.cinephilia.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -11,43 +11,43 @@ import java.util.List;
 public class TvShow {
 
     private Boolean adult;
-    @SerializedName("backdrop_path")
+    @JsonProperty("backdrop_path")
     private String backdropPath;
-    @SerializedName("episode_run_time")
+    @JsonProperty("episode_run_time")
     private List<Long> episodeRunTime;
-    @SerializedName("first_air_date")
+    @JsonProperty("first_air_date")
     private String firstAirDate;
 
     private List<Genre> genres;
     private String homepage;
 
     private Long id;
-    @SerializedName("in_production")
+    @JsonProperty("in_production")
     private Boolean inProduction;
 
     private List<String> languages;
-    @SerializedName("last_air_date")
+    @JsonProperty("last_air_date")
     private String lastAirDate;
 
     private String name;
 
-    @SerializedName("next_episode_to_air")
+    @JsonProperty("next_episode_to_air")
     private Object nextEpisodeToAir;
-    @SerializedName("number_of_episodes")
+    @JsonProperty("number_of_episodes")
     private Long numberOfEpisodes;
-    @SerializedName("number_of_seasons")
+    @JsonProperty("number_of_seasons")
     private Long numberOfSeasons;
-    @SerializedName("origin_country")
+    @JsonProperty("origin_country")
     private List<String> originCountry;
-    @SerializedName("original_language")
+    @JsonProperty("original_language")
     private String originalLanguage;
-    @SerializedName("original_name")
+    @JsonProperty("original_name")
     private String originalName;
 
     private String overview;
 
     private Double popularity;
-    @SerializedName("poster_path")
+    @JsonProperty("poster_path")
     private String posterPath;
 
     private String status;
@@ -55,9 +55,9 @@ public class TvShow {
     private String tagline;
 
     private String type;
-    @SerializedName("vote_average")
+    @JsonProperty("vote_average")
     private Double voteAverage;
-    @SerializedName("vote_count")
+    @JsonProperty("vote_count")
     private Long voteCount;
 
 }

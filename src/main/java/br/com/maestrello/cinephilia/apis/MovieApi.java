@@ -1,19 +1,20 @@
 package br.com.maestrello.cinephilia.apis;
 
-import br.com.maestrello.cinephilia.domain.Movie;
-import br.com.maestrello.cinephilia.domain.Popular;
+import br.com.maestrello.cinephilia.model.Movie;
+import br.com.maestrello.cinephilia.model.MovieResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "movie-api", url = "${tmdb.base-url}")
 public interface MovieApi {
 
     @GetMapping("/movie/popular")
-    Popular getPopularMovies();
+    MovieResponse getPopularMovies();
 
     @GetMapping("/movie/top_rated")
-    List<Movie> getTopRatedMovies();
+    MovieResponse getTopRatedMovies();
 
+    @GetMapping("/movie/{movie_id}")
+    Movie getMovie(@PathVariable("movie_id") Long movieId);
 }

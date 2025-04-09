@@ -1,0 +1,7 @@
+tmdb:
+  base-url: http://localhost:8081
+  api-key: 1234
+
+jasypt:
+  encryptor:
+    password: yourTestPassword

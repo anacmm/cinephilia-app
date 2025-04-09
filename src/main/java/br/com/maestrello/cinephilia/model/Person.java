@@ -1,7 +1,7 @@
 
-package br.com.maestrello.cinephilia.domain;
+package br.com.maestrello.cinephilia.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class Person {
 
     private Boolean adult;
-    @SerializedName("also_known_as")
+    @JsonProperty("also_known_as")
     private List<String> alsoKnownAs;
 
     private String biography;
@@ -24,17 +24,17 @@ public class Person {
     private String homepage;
 
     private Long id;
-    @SerializedName("imdb_id")
+    @JsonProperty("imdb_id")
     private String imdbId;
-    @SerializedName("known_for_department")
+    @JsonProperty("known_for_department")
     private String knownForDepartment;
 
     private String name;
-    @SerializedName("place_of_birth")
+    @JsonProperty("place_of_birth")
     private String placeOfBirth;
 
     private Double popularity;
-    @SerializedName("profile_path")
+    @JsonProperty("profile_path")
     private String profilePath;
 
 }

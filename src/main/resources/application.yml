@@ -1,7 +1,6 @@
 spring:
   profiles:
     active: dev
-
   cloud:
     openfeign:
       client:
@@ -13,7 +12,7 @@ spring:
 
 tmdb:
   base-url: https://api.themoviedb.org/3
-  api-key: ENC(mHH1fl6FXC6bkpSAPfqwQNhixLuyHjqtdr/SsoJO4r/XybKHLkffYgY3sElL2XQD)
+  api-key: ENC(GZwhukEU94lr/i7mSsH3yO8VZ0ADMHpMc8b4NPsMIvmhYxa+mrdvaVndESGoe3gb)
 
 logging:
   level:

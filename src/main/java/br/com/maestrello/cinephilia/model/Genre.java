@@ -1,5 +1,5 @@
 
-package br.com.maestrello.cinephilia.domain;
+package br.com.maestrello.cinephilia.model;
 
 import lombok.Data;
 

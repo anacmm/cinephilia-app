@@ -1,7 +1,7 @@
 package br.com.maestrello.cinephilia.service;
 
 import br.com.maestrello.cinephilia.apis.MovieApi;
-import br.com.maestrello.cinephilia.domain.Movie;
+import br.com.maestrello.cinephilia.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +21,11 @@ public class MovieService {
         return movieApi.getPopularMovies().getResults();
     }
 
+    public List<Movie> getTopRatedMovies() {
+        return movieApi.getTopRatedMovies().getResults();
+    }
+
+    public Movie getMovieDetails(Long movieId) {
+        return movieApi.getMovie(movieId);
+    }
 }
