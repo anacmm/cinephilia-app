@@ -1,7 +1,6 @@
 package br.com.maestrello.cinephilia.model;
 
 import java.util.List;
-
 import lombok.Builder;
 import lombok.Data;
 
