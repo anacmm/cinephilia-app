@@ -1,40 +1,42 @@
-
 package br.com.maestrello.cinephilia.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class Person {
 
-    private Boolean adult;
-    @JsonProperty("also_known_as")
-    private List<String> alsoKnownAs;
+  private Boolean adult;
 
-    private String biography;
+  @JsonProperty("also_known_as")
+  private List<String> alsoKnownAs;
 
-    private String birthday;
+  private String biography;
 
-    private Object deathday;
+  private String birthday;
 
-    private Long gender;
+  private Object deathday;
 
-    private String homepage;
+  private Long gender;
 
-    private Long id;
-    @JsonProperty("imdb_id")
-    private String imdbId;
-    @JsonProperty("known_for_department")
-    private String knownForDepartment;
+  private String homepage;
 
-    private String name;
-    @JsonProperty("place_of_birth")
-    private String placeOfBirth;
+  private Long id;
 
-    private Double popularity;
-    @JsonProperty("profile_path")
-    private String profilePath;
+  @JsonProperty("imdb_id")
+  private String imdbId;
 
+  @JsonProperty("known_for_department")
+  private String knownForDepartment;
+
+  private String name;
+
+  @JsonProperty("place_of_birth")
+  private String placeOfBirth;
+
+  private Double popularity;
+
+  @JsonProperty("profile_path")
+  private String profilePath;
 }

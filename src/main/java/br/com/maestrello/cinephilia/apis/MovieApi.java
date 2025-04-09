@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "movie-api", url = "${tmdb.base-url}")
 public interface MovieApi {
 
-    @GetMapping("/movie/popular")
-    MovieResponse getPopularMovies();
+  @GetMapping("/movie/popular")
+  MovieResponse getPopularMovies();
 
-    @GetMapping("/movie/top_rated")
-    MovieResponse getTopRatedMovies();
+  @GetMapping("/movie/top_rated")
+  MovieResponse getTopRatedMovies();
 
-    @GetMapping("/movie/{movie_id}")
-    Movie getMovie(@PathVariable("movie_id") Long movieId);
+  @GetMapping("/movie/{movie_id}")
+  Movie getMovie(@PathVariable("movie_id") Long movieId);
 }

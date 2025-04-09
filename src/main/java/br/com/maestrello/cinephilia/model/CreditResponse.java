@@ -1,12 +1,11 @@
 package br.com.maestrello.cinephilia.model;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class CreditResponse {
 
-    private Long id;
-    private List<Cast> cast;
+  private Long id;
+  private List<Cast> cast;
 }

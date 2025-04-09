@@ -12,21 +12,21 @@ import org.springframework.context.annotation.Configuration;
 @EnableEncryptableProperties
 public class FeignClientConfig {
 
-    @Value("${tmdb.api-key}")
-    private String apiKey;
+  @Value("${tmdb.api-key}")
+  private String apiKey;
 
-    @Bean
-    public RequestInterceptor requestInterceptor() {
-        return new RequestInterceptor() {
-            @Override
-            public void apply(RequestTemplate template) {
-                template.query("api_key", apiKey);
-            }
-        };
-    }
+  @Bean
+  public RequestInterceptor requestInterceptor() {
+    return new RequestInterceptor() {
+      @Override
+      public void apply(RequestTemplate template) {
+        template.query("api_key", apiKey);
+      }
+    };
+  }
 
-    @Bean
-    Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
-    }
+  @Bean
+  Logger.Level feignLoggerLevel() {
+    return Logger.Level.FULL;
+  }
 }

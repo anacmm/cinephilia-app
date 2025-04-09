@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public class Credit {
 
-    Long id;
-    String title;
-    CreditType creditType;
-    String posterPath;
-    String releaseDate;
+  Long id;
+  String title;
+  CreditType creditType;
+  String posterPath;
+  String releaseDate;
 }

@@ -1,8 +1,8 @@
 package br.com.maestrello.cinephilia.model;
 
 public enum CreditType {
-    TV("TV"), MOVIE("Movie");
+  TV("TV"),
+  MOVIE("Movie");
 
-    CreditType(String description) {
-    }
+  CreditType(String description) {}
 }

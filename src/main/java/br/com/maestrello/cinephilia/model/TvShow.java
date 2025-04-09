@@ -1,63 +1,72 @@
-
 package br.com.maestrello.cinephilia.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-
 import java.util.List;
-
+import lombok.Data;
 
 @Data
 public class TvShow {
 
-    private Boolean adult;
-    @JsonProperty("backdrop_path")
-    private String backdropPath;
-    @JsonProperty("episode_run_time")
-    private List<Long> episodeRunTime;
-    @JsonProperty("first_air_date")
-    private String firstAirDate;
+  private Boolean adult;
 
-    private List<Genre> genres;
-    private String homepage;
+  @JsonProperty("backdrop_path")
+  private String backdropPath;
 
-    private Long id;
-    @JsonProperty("in_production")
-    private Boolean inProduction;
+  @JsonProperty("episode_run_time")
+  private List<Long> episodeRunTime;
 
-    private List<String> languages;
-    @JsonProperty("last_air_date")
-    private String lastAirDate;
+  @JsonProperty("first_air_date")
+  private String firstAirDate;
 
-    private String name;
+  private List<Genre> genres;
+  private String homepage;
 
-    @JsonProperty("next_episode_to_air")
-    private Object nextEpisodeToAir;
-    @JsonProperty("number_of_episodes")
-    private Long numberOfEpisodes;
-    @JsonProperty("number_of_seasons")
-    private Long numberOfSeasons;
-    @JsonProperty("origin_country")
-    private List<String> originCountry;
-    @JsonProperty("original_language")
-    private String originalLanguage;
-    @JsonProperty("original_name")
-    private String originalName;
+  private Long id;
 
-    private String overview;
+  @JsonProperty("in_production")
+  private Boolean inProduction;
 
-    private Double popularity;
-    @JsonProperty("poster_path")
-    private String posterPath;
+  private List<String> languages;
 
-    private String status;
+  @JsonProperty("last_air_date")
+  private String lastAirDate;
 
-    private String tagline;
+  private String name;
 
-    private String type;
-    @JsonProperty("vote_average")
-    private Double voteAverage;
-    @JsonProperty("vote_count")
-    private Long voteCount;
+  @JsonProperty("next_episode_to_air")
+  private Object nextEpisodeToAir;
 
+  @JsonProperty("number_of_episodes")
+  private Long numberOfEpisodes;
+
+  @JsonProperty("number_of_seasons")
+  private Long numberOfSeasons;
+
+  @JsonProperty("origin_country")
+  private List<String> originCountry;
+
+  @JsonProperty("original_language")
+  private String originalLanguage;
+
+  @JsonProperty("original_name")
+  private String originalName;
+
+  private String overview;
+
+  private Double popularity;
+
+  @JsonProperty("poster_path")
+  private String posterPath;
+
+  private String status;
+
+  private String tagline;
+
+  private String type;
+
+  @JsonProperty("vote_average")
+  private Double voteAverage;
+
+  @JsonProperty("vote_count")
+  private Long voteCount;
 }
