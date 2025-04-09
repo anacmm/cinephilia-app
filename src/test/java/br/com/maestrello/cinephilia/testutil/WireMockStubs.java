@@ -1,4 +1,4 @@
-package br.com.maestrello.cinephilia.stub;
+package br.com.maestrello.cinephilia.testutil;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -72,4 +72,5 @@ public class WireMockStubs {
         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .withBodyFile(fileName);
   }
+
 }
