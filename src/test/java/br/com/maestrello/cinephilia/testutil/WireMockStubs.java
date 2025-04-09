@@ -4,6 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.matching;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
@@ -30,6 +31,18 @@ public class WireMockStubs {
         get(urlPathEqualTo("/movie/top_rated"))
             .withQueryParam("api_key", matching(API_KEY_REGEX))
             .willReturn(okJsonFile("movies-top-rated.json")));
+  }
+
+  public static void stubMovieErrorEndpoints() {
+    stubFor(
+        get(urlEqualTo("/movie/9999"))
+            .withQueryParam("api_key", matching(".+"))
+            .willReturn(aResponse().withStatus(404)));
+
+    stubFor(
+        get(urlPathEqualTo("/movie/popular"))
+            .withQueryParam("api_key", matching(".+"))
+            .willReturn(aResponse().withStatus(500)));
   }
 
   public static void stubPersonEndpoints() {

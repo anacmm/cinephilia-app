@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class CinephiliaExceptionHandler {
 
+  public static final String TIMESTAMP = "timestamp";
+  public static final String STATUS = "status";
+  public static final String ERROR = "error";
+  public static final String MESSAGE = "message";
+
   @ExceptionHandler(RuntimeException.class)
   public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
     return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
@@ -35,10 +40,10 @@ public class CinephiliaExceptionHandler {
 
   private ResponseEntity<Object> buildErrorResponse(HttpStatus status, String message) {
     Map<String, Object> errorBody = new HashMap<>();
-    errorBody.put("timestamp", LocalDateTime.now());
-    errorBody.put("status", status.value());
-    errorBody.put("error", status.getReasonPhrase());
-    errorBody.put("message", message);
+    errorBody.put(TIMESTAMP, LocalDateTime.now());
+    errorBody.put(STATUS, status.value());
+    errorBody.put(ERROR, status.getReasonPhrase());
+    errorBody.put(MESSAGE, message);
     return new ResponseEntity<>(errorBody, status);
   }
 }
