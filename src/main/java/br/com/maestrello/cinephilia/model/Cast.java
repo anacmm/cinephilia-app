@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class Cast {
 
+  @JsonProperty("poster_path")
+  String posterPath;
+
   private Boolean adult;
   private String character;
   private Long gender;
@@ -30,7 +33,4 @@ public class Cast {
 
   @JsonProperty("profile_path")
   private String profilePath;
-
-  @JsonProperty("poster_path")
-  String posterPath;
 }

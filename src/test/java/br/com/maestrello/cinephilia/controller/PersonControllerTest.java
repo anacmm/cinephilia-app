@@ -27,6 +27,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @AutoConfigureWireMock(port = 8081)
 class PersonControllerTest {
 
+  @Autowired private MockMvc mockMvc;
+
   @BeforeEach
   void setupWireMockStub() {
     stubFor(
@@ -38,8 +40,6 @@ class PersonControllerTest {
                     .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .withBodyFile("movie.json")));
   }
-
-  @Autowired private MockMvc mockMvc;
 
   @Test
   void getMovieDetails_shouldReturnMovieJson_whenMovieExists() throws Exception {
