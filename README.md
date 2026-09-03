@@ -1,85 +1,148 @@
 # CinephiliaApp
 
-CinephiliaApp is a Java-based application designed for movie and TV show lovers. It's a fun and educational game where
-users must link two actors by exploring their work in movies and TV shows, aiming to do so in the fewest steps possible.
-This project is continually evolving and is authored by [Ana Maestrello](https://github.com/anacmm).
+CinephiliaApp is a Java application for movie and TV enthusiasts. The aim of the game is to connect two actors through
+their movie and TV credits in as few steps as possible.
+
+This is an evolving study project created by [Ana Maestrello](https://github.com/anacmm).
 
 ## Features
 
-- Browse and search for movies, TV shows, and actors.
-- Link actors by connecting their work in films and TV shows.
-- Utilize The Movie Database (TMDb) API for rich movie and TV show data.
-- Study project to improve your Java skills.
+- Browse popular and top-rated movies and TV shows.
+- Browse people and their movie and TV credits.
+- Connect actors through their shared work.
+- Fetch current data from [The Movie Database (TMDb)](https://www.themoviedb.org/).
+- Explore and test the API through Swagger UI.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
+- JDK 17.
+- A free TMDb account and **API Key** from the
+  [TMDb API settings](https://www.themoviedb.org/settings/api).
+- An IDE such as IntelliJ IDEA (optional).
 
-Before you begin, ensure you have met the following requirements:
+The application currently authenticates with TMDb's API Key as an `api_key` query parameter. It does not use the TMDb
+API Read Access Token.
 
-- Java Development Kit (JDK) 11 or later installed.
-- An IDE for Java development (e.g., IntelliJ IDEA, Eclipse).
-- A free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/documentation/api) for accessing movie and
-  TV show data.
+> The included Gradle 8.0.2 wrapper cannot run on Java 21. Use Java 17 for this project.
 
-### Configuration
+## Getting started
 
-1. Clone the CinephiliaApp repository to your local machine:
+Clone the repository and enter the project directory:
 
-   ```bash
-   git clone https://github.com/anacmm/cinephilia-app.git
+```bash
+git clone https://github.com/anacmm/cinephilia-app.git
+cd cinephilia-app
+```
 
-2. Open the project in your Java development IDE.
+### Select Java 17 with SDKMAN
 
-3. Create a application.yml file in the src/main/resources directory to store your TMDb API key. Add the API key like
-   this:
+If you use [SDKMAN](https://sdkman.io/), select the installed Temurin 17 SDK:
 
-   ```yaml
-    tmdb:
-    api-key: YOUR_TMDB_API_KEY
-    Building and Running
+```bash
+source "$SDKMAN_DIR/bin/sdkman-init.sh"
+sdk use java 17.0.16-tem
+java -version
+```
 
-4. To build and run the CinephiliaApp project, follow these steps:
+In IntelliJ IDEA, also set **Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM** to Java 17.
 
-- Build the project using your IDE or Gradle:
-- If you're using Gradle, you can build the project by running the following command in the project directory:
+## Configure the TMDb API key
 
-   ```bash
-   Copy code
-   ./gradlew build
+The API key in `src/main/resources/application.yml` is stored as a Jasypt `ENC(...)` value. To replace it, choose an
+encryption password and encrypt your new TMDb API Key with the same algorithm configured by the application.
 
-### Run the application:
+First, build the project so that the Jasypt dependency is available locally:
 
-Use your IDE to run the main application class, or run the JAR file generated in the build process.
+```bash
+./gradlew clean build
+```
 
-Access the application in your web browser at http://localhost:8080 (default port). You can customize the port in the
-application.yml file if needed.
+Then enter the API key and encryption password without saving them in your terminal history:
 
-### Usage
+```bash
+read -s "TMDB_API_KEY?TMDb API Key: "
+echo
+read -s "JASYPT_PASSWORD?New encryption password: "
+echo
 
-Upon accessing the application, you can start playing the game.
-Browse movies, TV shows, and actors to connect them in the fewest steps.
-Explore different levels of difficulty and enjoy the game.
+JASYPT_JAR=$(find "$HOME/.gradle/caches" -type f -name 'jasypt-1.9.3.jar' | head -1)
 
-### Contributing
+java -cp "$JASYPT_JAR" \
+  org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
+  input="$TMDB_API_KEY" \
+  password="$JASYPT_PASSWORD" \
+  algorithm=PBEWithMD5AndDES \
+  ivGeneratorClassName=org.jasypt.iv.NoIvGenerator \
+  verbose=false
+```
 
-If you're interested in contributing to CinephiliaApp, please follow these steps:
+Copy the command output into `src/main/resources/application.yml`:
 
-- Fork the repository.
-- Create a new branch with a descriptive name for your feature or fix.
-- Implement your changes.
-- Write tests to cover your code, if applicable.
-- Make a pull request to the main repository.
+```yaml
+tmdb:
+  base-url: https://api.themoviedb.org/3
+  api-key: ENC(ENCRYPTED_OUTPUT)
+```
 
-### Issues and Support
+Keep the encryption password private. Do not add it to `application.yml`, `compose.yaml`, or Git.
 
-If you encounter any issues or need support, please open an issue on the project's GitHub repository.
+## Build and test
 
-### License
+The regular build and automated tests do not require the Jasypt password:
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+```bash
+./gradlew clean build
+```
 
-### Acknowledgments
+## Run the application
 
-Ana Maestrello (@anacmm) for creating and maintaining the CinephiliaApp project.
-The Movie Database (TMDb) for providing access to movie and TV show data via their API.
+Enter and export the same password that was used to encrypt the API key, then start Spring Boot:
+
+```bash
+read -s "JASYPT_ENCRYPTOR_PASSWORD?Jasypt password: "
+echo
+export JASYPT_ENCRYPTOR_PASSWORD
+
+./gradlew bootRun
+```
+
+The application is ready when the terminal shows:
+
+```text
+Started CinephiliaApplication
+```
+
+`bootRun` remains at an executing percentage while the web server is running. This is expected. Keep the terminal open
+and use `Ctrl+C` to stop the application.
+
+Useful local URLs:
+
+- Application: <http://localhost:8080>
+- Swagger UI: <http://localhost:8080/swagger-ui/index.html>
+- Health check: <http://localhost:8080/actuator/health>
+
+Clear the secrets from the shell when finished:
+
+```bash
+unset TMDB_API_KEY JASYPT_PASSWORD JASYPT_ENCRYPTOR_PASSWORD
+```
+
+## MongoDB
+
+`compose.yaml` contains a development MongoDB service, but the current application does not have a MongoDB dependency
+and does not require MongoDB to build or run.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a branch with a descriptive name.
+3. Implement and test your changes.
+4. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
+
+## Acknowledgments
+
+- [The Movie Database (TMDb)](https://www.themoviedb.org/) for its movie and TV data API.

@@ -12,7 +12,7 @@ spring:
 
 tmdb:
   base-url: https://api.themoviedb.org/3
-  api-key: ENC(GZwhukEU94lr/i7mSsH3yO8VZ0ADMHpMc8b4NPsMIvmhYxa+mrdvaVndESGoe3gb)
+  api-key: ENC(8lVh+G70Ok0k5Vom+zYLJr499rANs5voyPpq9IXe9UeaAqEM+pmuDHaGT4MN2M5B)
 
 logging:
   level:
