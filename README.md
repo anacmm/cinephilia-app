@@ -84,7 +84,7 @@ tmdb:
   api-key: ENC(ENCRYPTED_OUTPUT)
 ```
 
-Keep the encryption password private. Do not add it to `application.yml`, `compose.yaml`, or Git.
+Keep the encryption password private. Do not add it to `application.yml` or Git.
 
 ## Build and test
 
@@ -126,11 +126,6 @@ Clear the secrets from the shell when finished:
 ```bash
 unset TMDB_API_KEY JASYPT_PASSWORD JASYPT_ENCRYPTOR_PASSWORD
 ```
-
-## MongoDB
-
-`compose.yaml` contains a development MongoDB service, but the current application does not have a MongoDB dependency
-and does not require MongoDB to build or run.
 
 ## Contributing
 
