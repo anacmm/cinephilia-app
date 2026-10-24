@@ -9,13 +9,12 @@ import br.com.maestrello.cinephilia.model.Movie;
 import br.com.maestrello.cinephilia.testutil.DataHelper;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@SpringBootTest
-@ActiveProfiles("test")
+@ExtendWith(MockitoExtension.class)
 class MovieServiceTest {
 
   @Mock private MovieApi movieApi;

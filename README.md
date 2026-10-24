@@ -67,7 +67,7 @@ credentials. They validate the REST-to-Feign integration, not current live TMDB 
 
 ## Prerequisites
 
-- JDK 17.
+- JDK 25.
 - A free TMDb account and **API Key** from the
   [TMDb API settings](https://www.themoviedb.org/settings/api).
 - An IDE such as IntelliJ IDEA (optional).
@@ -75,7 +75,7 @@ credentials. They validate the REST-to-Feign integration, not current live TMDB 
 The application currently authenticates with TMDb's API Key as an `api_key` query parameter. It does not use the TMDb
 API Read Access Token.
 
-> The included Gradle 8.0.2 wrapper cannot run on Java 21. Use Java 17 for this project.
+> Use Java 25 for the Gradle JVM and application runtime. The Gradle wrapper uses version 9.7.1, and the build pins a Java 25 toolchain.
 
 ## Getting started
 
@@ -86,17 +86,22 @@ git clone https://github.com/anacmm/cinephilia-app.git
 cd cinephilia-app
 ```
 
-### Select Java 17 with SDKMAN
+### Select Java 25
 
-If you use [SDKMAN](https://sdkman.io/), select the installed Temurin 17 SDK:
+On macOS, select an installed JDK 25 (for example, Amazon Corretto or Eclipse Temurin):
 
 ```bash
-source "$SDKMAN_DIR/bin/sdkman-init.sh"
-sdk use java 17.0.16-tem
+export JAVA_HOME=$(/usr/libexec/java_home -v 25)
+export PATH="$JAVA_HOME/bin:$PATH"
 java -version
+./gradlew --version
 ```
 
-In IntelliJ IDEA, also set **Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM** to Java 17.
+On other platforms, set `JAVA_HOME` to your JDK 25 installation and put its `bin` directory on `PATH`.
+In IntelliJ IDEA, set both **Project SDK** and **Settings > Build, Execution, Deployment > Build Tools > Gradle >
+Gradle JVM** to Java 25. Reload the Gradle project after changing them.
+
+The backend uses Spring Boot 4.0.9, Spring Cloud 2025.1.4 and springdoc 3.0.3. Docker and CI also use Java 25.
 
 ## Configure the TMDb API key
 
