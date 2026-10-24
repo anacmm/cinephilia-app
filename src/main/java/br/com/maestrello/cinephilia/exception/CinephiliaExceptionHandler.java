@@ -34,8 +34,7 @@ public class CinephiliaExceptionHandler {
 
   @ExceptionHandler(FeignException.class)
   public ResponseEntity<Object> handleFeignError(FeignException ex) {
-    return buildErrorResponse(
-        HttpStatus.valueOf(ex.status()), "TMDB API error: " + ex.getMessage());
+    return buildErrorResponse(HttpStatus.valueOf(ex.status()), "TMDB API error: " + ex.status());
   }
 
   private ResponseEntity<Object> buildErrorResponse(HttpStatus status, String message) {

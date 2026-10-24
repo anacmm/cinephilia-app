@@ -1,5 +1,6 @@
 package br.com.maestrello.cinephilia.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,9 @@ public class Cast {
   @JsonProperty("known_for_department")
   private String knownForDepartment;
 
+  @JsonAlias("title")
   private String name;
+
   private Long order;
 
   @JsonProperty("original_name")

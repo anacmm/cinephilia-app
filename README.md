@@ -13,6 +13,58 @@ This is an evolving study project created by [Ana Maestrello](https://github.com
 - Fetch current data from [The Movie Database (TMDb)](https://www.themoviedb.org/).
 - Explore and test the API through Swagger UI.
 
+## Cast and person credits
+
+- `GET /movies/{movieId}/credits` returns movie cast (for example, `/movies/603/credits` for The Matrix).
+- `GET /tv/{tvId}/credits` returns the latest season's TV cast (for example, `/tv/1396/credits` for Breaking Bad).
+- `GET /person/{person-id}/credits` returns a person's combined filmography with `creditType` set to `MOVIE` or `TV`.
+
+The cast endpoints return a JSON array using the existing `Cast` model, including `id` (TMDB person ID), `name`,
+`character`, `profile_path`, and `order`. Other existing `Cast` fields may also appear. Optional values can be null;
+no cast returns `[]`. Crew and the upstream credits wrapper are omitted. TMDB's cast order is preserved.
+
+TV `/credits` covers the latest season, rather than all seasons; TMDB's separate `/aggregate_credits` API would be
+needed for an all-season view. Both cast endpoints are documented in Swagger UI. Authentication stays server-side
+through the existing Feign API-key interceptor. Feign request logging is disabled to keep credentials out of logs,
+and upstream error responses omit request URLs.
+
+### Cast and directors (backward compatible)
+
+TMDB movie and TV `/credits` responses contain both `cast` and `crew`. Previously, our Feign
+`CreditResponse` only modeled `cast`, so `crew` was discarded during deserialization. The existing public
+`/credits` endpoints still return the same cast arrays. Changing them to objects would break consumers
+that expect arrays; no frontend changes are required.
+
+Use these additional endpoints for an object containing both cast and directors:
+
+- `GET /movies/{movieId}/credits/details`
+- `GET /tv/{tvId}/credits/details`
+
+```json
+{
+  "cast": [{"id": 6384, "name": "Keanu Reeves", "character": "Neo", "profile_path": "/example.jpg", "order": 0}],
+  "directors": [{"id": 100, "name": "Example director", "profile_path": null}]
+}
+```
+
+The example is illustrative. `cast` contains exactly the same entries, fields, null values and order as
+its cast-only endpoint. `directors` includes every returned crew entry whose `job` is exactly `Director`,
+with only person `id`, `name` and `profile_path`. Assistant directors, producers and other jobs are excluded.
+Missing, null or empty crew produces `directors: []`. Profile paths may be null. Each request uses one existing
+TMDB credits call and the same authentication and error handling. Swagger documents the additional endpoints.
+
+TV directors are **not overall series directors**. Different episodes and seasons can have different directors,
+and a show may return several directors or none. We filter the `job` field of the crew returned by the existing
+[TMDB TV credits endpoint](https://developer.themoviedb.org/reference/tv-series-credits), which covers the latest
+season. This is not a complete list across all episodes, and an empty list does not prove the show has no directors.
+We do not infer directors from creators, producers, the Directing department, or cast membership.
+TMDB's [aggregate credits](https://developer.themoviedb.org/reference/tv-series-aggregate-credits) cover all episodes
+and represent crew roles in `jobs[]` with episode counts, rather than the flat `job` used here. An all-season or
+episode-specific view would require separate integration and is not implemented by these endpoints.
+
+Automated cast tests use representative WireMock fixtures for movie `603` and TV series `1396`, without live TMDB
+credentials. They validate the REST-to-Feign integration, not current live TMDB data.
+
 ## Prerequisites
 
 - JDK 17.

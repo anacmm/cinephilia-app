@@ -10,4 +10,5 @@ public class CreditResponse {
 
   private Long id;
   private List<Cast> cast;
+  private List<CrewMember> crew;
 }

@@ -58,6 +58,10 @@ class PersonControllerTest {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$").isArray())
-        .andExpect(jsonPath("$[0].title").exists());
+        .andExpect(jsonPath("$[0].title").exists())
+        .andExpect(
+            jsonPath("$[?(@.creditType == 'MOVIE' && @.id == 2185)].title")
+                .value(org.hamcrest.Matchers.hasItem("Big Trouble")))
+        .andExpect(jsonPath("$[?(@.creditType == 'TV')].title").isNotEmpty());
   }
 }

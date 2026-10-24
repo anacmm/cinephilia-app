@@ -6,6 +6,7 @@ import br.com.maestrello.cinephilia.model.Credit;
 import br.com.maestrello.cinephilia.model.CreditType;
 import br.com.maestrello.cinephilia.model.Person;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -58,14 +59,11 @@ public class PersonService {
                         .build())
             .toList());
 
-    // Sort by releaseDate (null-safe)
+    // Latest release dates first, with missing dates last.
     return credits.stream()
         .sorted(
-            (c1, c2) -> {
-              if (c1.getReleaseDate() == null) return 1;
-              if (c2.getReleaseDate() == null) return -1;
-              return c1.getReleaseDate().compareTo(c2.getReleaseDate());
-            })
+            Comparator.comparing(
+                Credit::getReleaseDate, Comparator.nullsLast(Comparator.reverseOrder())))
         .toList();
   }
 }

@@ -1,0 +1,47 @@
+{
+  "id": 1396,
+  "cast": [
+    {
+      "id": 17419,
+      "name": "Bryan Cranston",
+      "character": "Walter White",
+      "profile_path": "/bryan.jpg",
+      "order": 0
+    },
+    {
+      "id": 84497,
+      "name": "Aaron Paul",
+      "character": null,
+      "profile_path": null
+    }
+  ],
+  "crew": [
+    {
+      "id": 100,
+      "name": "First director",
+      "profile_path": "/director.jpg",
+      "job": "Director"
+    },
+    {
+      "id": 101,
+      "name": "Second director",
+      "profile_path": null,
+      "job": "Director"
+    },
+    {
+      "id": 102,
+      "name": "Producer",
+      "profile_path": "/producer.jpg",
+      "job": "Producer"
+    },
+    {
+      "id": 103,
+      "name": "Assistant director",
+      "job": "Assistant Director"
+    },
+    {
+      "id": 104,
+      "name": "Unknown job"
+    }
+  ]
+}

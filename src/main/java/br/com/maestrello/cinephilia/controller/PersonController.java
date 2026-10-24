@@ -36,7 +36,8 @@ public class PersonController {
 
   @Operation(
       summary = "Get person filmography",
-      description = "Returns combined movie and TV credits for a given person.")
+      description =
+          "Returns combined movie and TV credits for a given person, latest release date first with null dates last.")
   @CinephiliaApiResponses
   @GetMapping("/{person-id}/credits")
   public ResponseEntity<List<Credit>> getCredits(@PathVariable("person-id") Long personId) {

@@ -1,5 +1,6 @@
 package br.com.maestrello.cinephilia.apis;
 
+import br.com.maestrello.cinephilia.model.CreditResponse;
 import br.com.maestrello.cinephilia.model.Movie;
 import br.com.maestrello.cinephilia.model.MovieResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -17,4 +18,7 @@ public interface MovieApi {
 
   @GetMapping("/movie/{movie_id}")
   Movie getMovie(@PathVariable("movie_id") Long movieId);
+
+  @GetMapping("/movie/{movieId}/credits")
+  CreditResponse getCredits(@PathVariable("movieId") Long movieId);
 }
