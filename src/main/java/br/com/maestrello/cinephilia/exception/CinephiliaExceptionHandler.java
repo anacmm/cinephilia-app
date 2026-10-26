@@ -18,6 +18,12 @@ public class CinephiliaExceptionHandler {
   public static final String ERROR = "error";
   public static final String MESSAGE = "message";
 
+  @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
+  public ResponseEntity<Object> handleResponseStatusException(
+      org.springframework.web.server.ResponseStatusException ex) {
+    return buildErrorResponse(HttpStatus.valueOf(ex.getStatusCode().value()), ex.getReason());
+  }
+
   @ExceptionHandler(RuntimeException.class)
   public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
     return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());

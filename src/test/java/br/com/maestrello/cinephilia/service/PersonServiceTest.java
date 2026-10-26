@@ -25,6 +25,76 @@ class PersonServiceTest {
   @InjectMocks private PersonService personService;
 
   @Test
+  void randomPersonUsesOnlyTop250AndCachesPoolUntilExpiry() {
+    when(personApi.getPopularPeople(org.mockito.ArgumentMatchers.anyInt()))
+        .thenAnswer(
+            invocation -> {
+              int page = invocation.getArgument(0);
+              return br.com.maestrello.cinephilia.model.PersonResponse.builder()
+                  .totalPages(100L)
+                  .results(
+                      java.util.stream.LongStream.rangeClosed((page - 1) * 20L + 1, page * 20L)
+                          .mapToObj(id -> Person.builder().id(id).build())
+                          .toList())
+                  .build();
+            });
+
+    for (int i = 0; i < 1000; i++) {
+      long id = personService.getRandomPerson().getId();
+      assertTrue(id >= 1 && id <= 250);
+    }
+    for (int page = 1; page <= 13; page++) {
+      org.mockito.Mockito.verify(personApi).getPopularPeople(page);
+    }
+    org.mockito.Mockito.verifyNoMoreInteractions(personApi);
+
+    org.springframework.test.util.ReflectionTestUtils.setField(
+        personService,
+        "poolLoadedAt",
+        System.nanoTime() - java.util.concurrent.TimeUnit.HOURS.toNanos(2));
+    personService.getRandomPerson();
+    org.mockito.Mockito.verify(personApi, org.mockito.Mockito.times(2)).getPopularPeople(1);
+  }
+
+  @Test
+  void randomPersonHandlesSmallerPoolsAndDoesNotCacheEmptyResults() {
+    when(personApi.getPopularPeople(1))
+        .thenReturn(
+            br.com.maestrello.cinephilia.model.PersonResponse.builder()
+                .results(List.of())
+                .totalPages(0L)
+                .build())
+        .thenReturn(
+            br.com.maestrello.cinephilia.model.PersonResponse.builder()
+                .results(List.of(DataHelper.person(), DataHelper.person()))
+                .totalPages(1L)
+                .build());
+
+    var error =
+        assertThrows(
+            org.springframework.web.server.ResponseStatusException.class,
+            () -> personService.getRandomPerson());
+    assertEquals(503, error.getStatusCode().value());
+    assertEquals(DataHelper.person().getId(), personService.getRandomPerson().getId());
+    org.mockito.Mockito.verify(personApi, org.mockito.Mockito.times(2)).getPopularPeople(1);
+    org.mockito.Mockito.verifyNoMoreInteractions(personApi);
+  }
+
+  @Test
+  void randomPersonDoesNotCachePartialRefreshOnFailure() {
+    when(personApi.getPopularPeople(1))
+        .thenReturn(
+            br.com.maestrello.cinephilia.model.PersonResponse.builder()
+                .results(List.of(DataHelper.person()))
+                .totalPages(2L)
+                .build());
+    when(personApi.getPopularPeople(2)).thenThrow(new IllegalStateException("Unavailable"));
+    assertThrows(IllegalStateException.class, () -> personService.getRandomPerson());
+    assertThrows(IllegalStateException.class, () -> personService.getRandomPerson());
+    org.mockito.Mockito.verify(personApi, org.mockito.Mockito.times(2)).getPopularPeople(1);
+  }
+
+  @Test
   void getPopularPeople_shouldReturnPersonList() {
     when(personApi.getPopularPeople()).thenReturn(DataHelper.personResponse());
 

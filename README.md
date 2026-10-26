@@ -13,6 +13,17 @@ This is an evolving study project created by [Ana Maestrello](https://github.com
 - Fetch current data from [The Movie Database (TMDb)](https://www.themoviedb.org/).
 - Explore and test the API through Swagger UI.
 
+## Random popular person
+
+`GET /person/random` returns one `Person` JSON object chosen uniformly from TMDB's top 250 popular
+people. The backend fetches up to 13 pages, keeps the first 250 distinct person IDs in TMDB order,
+and caches the pool in memory for one hour per application instance. The first request and the first
+request after expiry refresh the pool. If TMDB returns fewer people, selection uses the available
+pool; an empty pool returns HTTP 503. Failed upstream requests use the existing error handling and
+are not cached. Consecutive calls may return the same person. Responses use `Cache-Control: no-store`
+so clients request a fresh random selection each time. Rankings can change between refreshes.
+Use `GET /person/{person-id}` for the selected person's full details.
+
 ## Cast and person credits
 
 - `GET /movies/{movieId}/credits` returns movie cast (for example, `/movies/603/credits` for The Matrix).

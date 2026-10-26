@@ -26,6 +26,18 @@ public class PersonController {
   }
 
   @Operation(
+      summary = "Get a random popular person",
+      description =
+          "Returns a randomly selected person from TMDB’s top 250 popular people, cached for one hour.")
+  @CinephiliaApiResponses
+  @GetMapping("/random")
+  public ResponseEntity<Person> getRandomPerson() {
+    return ResponseEntity.ok()
+        .cacheControl(org.springframework.http.CacheControl.noStore())
+        .body(personService.getRandomPerson());
+  }
+
+  @Operation(
       summary = "Get person details",
       description = "Returns detailed information for a given person ID.")
   @CinephiliaApiResponses

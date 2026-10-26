@@ -33,6 +33,34 @@ class PersonControllerTest {
   }
 
   @Test
+  void getRandomPersonReturns503ForEmptyPoolThenReturnsPerson() throws Exception {
+    com.github.tomakehurst.wiremock.client.WireMock.stubFor(
+        com.github.tomakehurst.wiremock.client.WireMock.get(
+                com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo("/person/popular"))
+            .withQueryParam("page", com.github.tomakehurst.wiremock.client.WireMock.equalTo("1"))
+            .willReturn(
+                com.github.tomakehurst.wiremock.client.WireMock.okJson(
+                    "{\"results\":[],\"total_pages\":0}")));
+    mockMvc.perform(get("/person/random")).andExpect(status().isServiceUnavailable());
+
+    com.github.tomakehurst.wiremock.client.WireMock.stubFor(
+        com.github.tomakehurst.wiremock.client.WireMock.get(
+                com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo("/person/popular"))
+            .withQueryParam("page", com.github.tomakehurst.wiremock.client.WireMock.equalTo("1"))
+            .willReturn(
+                com.github.tomakehurst.wiremock.client.WireMock.okJson(
+                    "{\"results\":[{\"id\":6384,\"name\":\"Keanu Reeves\"}],\"total_pages\":1}")));
+    mockMvc
+        .perform(get("/person/random"))
+        .andExpect(status().isOk())
+        .andExpect(
+            org.springframework.test.web.servlet.result.MockMvcResultMatchers.header()
+                .string("Cache-Control", "no-store"))
+        .andExpect(jsonPath("$.id").value(6384))
+        .andExpect(jsonPath("$.name").value("Keanu Reeves"));
+  }
+
+  @Test
   void getPopularPeople_shouldReturnList_whenAvailable() throws Exception {
     mockMvc
         .perform(get("/person/popular"))
