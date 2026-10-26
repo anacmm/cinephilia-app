@@ -1,6 +1,6 @@
-# CinephiliaApp
+# CastQuest (formerly Cinephilia)
 
-CinephiliaApp is a Java application for movie and TV enthusiasts. The aim of the game is to connect two actors through
+CastQuest is a Java application for movie and TV enthusiasts. The aim of the game is to connect two actors through
 their movie and TV credits in as few steps as possible.
 
 This is an evolving study project created by [Ana Maestrello](https://github.com/anacmm).
@@ -79,6 +79,7 @@ credentials. They validate the REST-to-Feign integration, not current live TMDB 
 ## Prerequisites
 
 - JDK 25.
+- Docker with Docker Compose for local PostgreSQL.
 - A free TMDb account and **API Key** from the
   [TMDb API settings](https://www.themoviedb.org/settings/api).
 - An IDE such as IntelliJ IDEA (optional).
@@ -113,6 +114,99 @@ In IntelliJ IDEA, set both **Project SDK** and **Settings > Build, Execution, De
 Gradle JVM** to Java 25. Reload the Gradle project after changing them.
 
 The backend uses Spring Boot 4.0.9, Spring Cloud 2025.1.4 and springdoc 3.0.3. Docker and CI also use Java 25.
+This repository uses Gradle; there is no Maven `pom.xml`. Existing Java packages and artifact names remain unchanged.
+
+## Local PostgreSQL
+
+Start Docker Desktop (or your Docker daemon), then prepare an ignored local configuration file:
+
+```bash
+cp .env.example .env
+chmod 600 .env
+```
+
+Set `POSTGRES_PASSWORD` in `.env` to a private local password, and set `DB_PASSWORD` to either that same
+password or its Jasypt-encrypted `ENC(...)` equivalent. For encrypted values, use the same encryption key
+and algorithm as the existing TMDB configuration, and supply `JASYPT_ENCRYPTOR_PASSWORD` separately.
+The example intentionally contains no passwords. Compose refuses to start PostgreSQL until
+`POSTGRES_PASSWORD` is set. Do not commit `.env` or production credentials; keep its permissions at `600`.
+Compose also reads exported system environment variables, which override matching `.env` values.
+
+```bash
+docker compose up -d --wait postgres
+docker compose ps
+```
+
+Compose runs PostgreSQL 17, binds it only to localhost, and stores data in the `postgres_data` named volume.
+`docker compose stop postgres` stops it while preserving data. PostgreSQL's initialization variables only
+apply when the volume is first created; editing `.env` does not change an existing database user's password.
+
+| Variable | Local default | Purpose |
+| --- | --- | --- |
+| `DB_HOST` | `localhost` | Application database host |
+| `DB_PORT` | `5432` | Application port and Compose's published PostgreSQL port |
+| `DB_NAME` | `castquest` | Database name |
+| `DB_USERNAME` | `castquest` | Database user |
+| `DB_PASSWORD` | None | Application database password; plain text or Jasypt `ENC(...)` |
+| `POSTGRES_PASSWORD` | None; required for Compose | Actual password used to initialize PostgreSQL |
+| `DB_URL` | Built from host, port and name | Optional complete JDBC URL override for the application |
+| `JASYPT_ENCRYPTOR_PASSWORD` | None | Decrypts the TMDB key and encrypted application database password |
+
+Compose reads `.env` automatically. Spring Boot does not, so export its values in the terminal used for
+Gradle or set them in the IDE's run configuration:
+
+```bash
+set -a
+source .env
+set +a
+```
+
+Use a shell-compatible `.env` file and quote values containing shell special characters. In deployed environments,
+provide these values through your environment or secret manager. The Compose user is for local development;
+deployment roles and database provisioning are outside this step. The application container would use the
+database service hostname rather than `localhost` if run on a shared Docker network.
+
+Quote encrypted passwords when sourcing `.env`, for example `DB_PASSWORD='ENC(...)'`. Docker cannot decrypt
+Jasypt values; `POSTGRES_PASSWORD` must contain the actual password. Encrypting `DB_PASSWORD` does not protect
+the separate plaintext Docker value in the same file. Keep the Jasypt encryption key outside `.env` and use an
+exported environment variable or secret manager for it. Never bake passwords into the Dockerfile or image.
+
+### Flyway and database verification
+
+Spring Boot runs Flyway before initializing JPA. Hibernate uses `ddl-auto: validate`; it never creates or updates
+tables. SQL initialization is disabled so Flyway is the schema authority. Spring Boot 4 uses the
+[Flyway starter and PostgreSQL module](https://docs.spring.io/spring-boot/how-to/data-initialization.html).
+
+Versioned SQL files live in `src/main/resources/db/migration`, named `V<number>__<description>.sql`.
+`V1__initialize_database.sql` executes `SELECT 1` and establishes Flyway's schema history without domain tables.
+`V2__create_players_and_game_sessions.sql` adds `players` and `game_sessions`. Add future changes as new migrations
+(starting with `V3__...`); never edit migrations already applied to a shared database. Flyway validates checksums
+on startup, automatic baselining is disabled, and Flyway clean is disabled.
+
+After starting the application, verify connectivity and migration history:
+
+```bash
+curl --fail http://localhost:8080/actuator/health
+docker compose exec postgres sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT version, description, success FROM flyway_schema_history ORDER BY installed_rank;"'
+```
+
+Health should be `UP` (the database health indicator participates), and migration versions `1` and `2` should have
+`success = t`. Startup logs also report Flyway migration/validation and JPA initialization.
+
+### Players and game sessions
+
+`Player` and `GameSession` live in the existing `model` package, with Spring Data JPA repositories in
+`repository`. Both use generated UUIDs and database-generated `Instant` timestamps stored as PostgreSQL
+`timestamp with time zone`. Guest player names are required, nonblank, and at most 50 characters; names are
+not unique. There are no accounts or authentication.
+
+A game session references an existing player without cascading deletes and starts as `IN_PROGRESS`.
+`COMPLETED` and `ABANDONED` are the other persisted string statuses. Start and target TMDB person IDs must
+be positive; completion fields are nullable, move counts and durations cannot be negative, and completion
+cannot precede the start. A composite index on `(player_id, started_at DESC)` supports player-session access.
+The nullable JSONB path maps to `List<Map<String, Object>>`, preserving ordered navigation node objects
+without defining a REST path contract yet. The repositories expose standard CRUD only. No game endpoints,
+state-transition rules, duration calculation, or leaderboard are implemented in this step.
 
 ## Configure the TMDb API key
 
@@ -156,15 +250,31 @@ Keep the encryption password private. Do not add it to `application.yml` or Git.
 
 ## Build and test
 
-The regular build and automated tests do not require the Jasypt password:
+The regular build and existing WireMock/Mockito tests do not require PostgreSQL, Docker, live TMDB access,
+or the Jasypt password. The `test` profile excludes database auto-configuration for these tests:
 
 ```bash
 ./gradlew clean build
 ```
 
+With local PostgreSQL running and `.env` exported as above, run the separate database integration test:
+
+```bash
+./gradlew databaseTest
+```
+
+These tests re-enable database auto-configuration and start the full application on a random HTTP port with a test
+TMDB key. They verify PostgreSQL connectivity, Flyway versions 1 and 2, Hibernate schema validation, UUID/timestamp
+generation, duplicate guest names, session status updates, ordered JSONB path storage, and database constraints.
+Repository test data is rolled back. Re-running migrations must apply no further changes. Use a dedicated test
+database where possible. The tests fail if PostgreSQL is unavailable rather than silently skipping. CI runs them
+against a disposable Compose database with a generated password, alongside the existing endpoint tests.
+No extra test database dependencies are needed.
+
 ## Run the application
 
-Enter and export the same password that was used to encrypt the API key, then start Spring Boot:
+Start PostgreSQL and export `.env` as described above. Enter and export the same password that was used to
+encrypt the TMDB API key, then start Spring Boot:
 
 ```bash
 read -s "JASYPT_ENCRYPTOR_PASSWORD?Jasypt password: "
@@ -192,7 +302,7 @@ Useful local URLs:
 Clear the secrets from the shell when finished:
 
 ```bash
-unset TMDB_API_KEY JASYPT_PASSWORD JASYPT_ENCRYPTOR_PASSWORD
+unset TMDB_API_KEY JASYPT_PASSWORD JASYPT_ENCRYPTOR_PASSWORD DB_PASSWORD POSTGRES_PASSWORD
 ```
 
 ## Contributing

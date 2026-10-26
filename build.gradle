@@ -25,6 +25,10 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-flyway'
+    runtimeOnly 'org.flywaydb:flyway-database-postgresql'
+    runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
@@ -61,5 +65,20 @@ spotless {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags 'database'
+    }
+}
+
+tasks.register('databaseTest', Test) {
+    description = 'Runs integration tests against PostgreSQL (start Docker Compose first).'
+    group = 'verification'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform {
+        includeTags 'database'
+    }
+    shouldRunAfter tasks.named('test')
+    // These tests verify an external database, whose state may change between invocations.
+    outputs.upToDateWhen { false }
 }

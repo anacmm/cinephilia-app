@@ -28,5 +28,16 @@ jobs:
       - name: Run tests
         run: ./gradlew test
 
+      - name: Verify PostgreSQL migrations and application startup
+        env:
+          DB_NAME: castquest_ci
+        run: |
+          export DB_PASSWORD="$(openssl rand -hex 24)"
+          export POSTGRES_PASSWORD="$DB_PASSWORD"
+          echo "::add-mask::$DB_PASSWORD"
+          trap 'docker compose -p castquest-ci down --volumes' EXIT
+          docker compose -p castquest-ci up -d --wait postgres
+          ./gradlew databaseTest
+
       - name: Build Spring Boot JAR
         run: ./gradlew bootJar
