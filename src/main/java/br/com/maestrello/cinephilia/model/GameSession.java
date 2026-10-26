@@ -55,7 +55,7 @@ public class GameSession {
   @Column(name = "duration_ms")
   private Long durationMs;
 
-  // Ordered navigation nodes; the API path contract will be defined in a later step.
+  // Ordered navigation selections, stored as objects with type and TMDB id.
   @Setter
   @JdbcTypeCode(SqlTypes.JSON)
   @Column(columnDefinition = "jsonb")
